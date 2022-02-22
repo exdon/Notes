@@ -1,0 +1,41 @@
+
+.fundo hr {
+    height: 3px;
+    width: 80%;
+    margin-top: 10px;
+    border: 1px solid aqua;
+}
+
+.content-cards-postit{
+    margin-top: -50px;
+}
+
+.fundo h5 {
+    padding-top: 20px;
+}
+
+::ng-deep .owl-theme .owl-dots, .owl-theme .owl-nav {
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 4px;
+    background-color: RGBA(0,0,0,0.83);
+}
+
+::ng-deep .owl-theme .owl-nav {
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 30px;
+    width: 100%;
+    background-color: RGBA(0,0,0,0.83);
+}
+
+::ng-deep .owl-carousel-o {
+    margin-left: 60px;
+}

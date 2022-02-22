@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 90%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.owl-next {
+    color: black !important;
+}
+
+.owl-prev {
+    color: black !important;
+}
+
+.owl-nav {
+    padding-top: 10px;
+}
+
+.icon-add {
+    position: absolute;
+    font-size: 40px !important;
+    color: #00FE0D;
+    top: 10px;
+    left: 70%;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+// @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
