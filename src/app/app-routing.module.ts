@@ -1,12 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ToDoComponent } from './components/toDo/to-do/to-do.component';
+import { FinancialControlComponent } from './components/financial-control/financial-control.component';
+
 import { FullGridComponent } from './components/Post-it/grid/grid.component';
+import { OptionsTabComponent } from './components/toDo/options-tab/options-tab.component';
 
 const routes: Routes = [
-  { path: 'todo', component: ToDoComponent },
+  { path: 'todo', component: OptionsTabComponent },
   { path: 'postit', component: FullGridComponent },
+  { path: 'financialcontrol', component: FinancialControlComponent },
 ]
 
 @NgModule({

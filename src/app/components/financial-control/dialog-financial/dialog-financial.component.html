@@ -1,0 +1,145 @@
+<mat-dialog-content class="mat-typography">
+    <form
+        [formGroup]="formulario"
+        (ngSubmit)="addNewActivity()"
+    >
+        <div class>
+            <div class="row">
+                <div class="row date-input">
+                    <mat-form-field
+                        color="primary"
+                        appearance="fill"
+                    >
+                        <mat-label>Data</mat-label>
+                        <input
+                            #data
+                            matInput
+                            [matDatepicker]="picker1"
+                            formControlName="date"
+                        >
+                        <mat-datepicker-toggle
+                            matSuffix
+                            [for]="picker1"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error>
+                            Data é um campo
+                            <strong>obrigatório</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row category-input">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Categoria</mat-label>
+                        <mat-select formControlName="category">
+                            <mat-option
+                                *ngFor="let category of categories"
+                                [value]="category.value"
+                            >
+                                {{category.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>
+                            Categoria é um campo
+                            <strong>obrigatório</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row value-input">
+                    <mat-form-field
+                        floatLabel="always"
+                        appearance="fill"
+                    >
+                        <mat-label>Valor</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            class="example-right-align"
+                            placeholder="0"
+                            formControlName="value"
+                        >
+                        <span matPrefix>R$&nbsp;</span>
+                        <mat-error>
+                            Valor é um campo
+                            <strong>obrigatório</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row paytype-input">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Forma de Pagamento</mat-label>
+                        <mat-select formControlName="paymentType">
+                            <mat-option
+                                *ngFor="let option of payTypes"
+                                [value]="option.value"
+                            >
+                                {{option.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>
+                            Forma de Pagamento é um campo
+                            <strong>obrigatório</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row time-input">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Horário</mat-label>
+                        <input
+                            matInput
+                            type="time"
+                            #time
+                            formControlName="time"
+                        >
+                        <mat-error>
+                            Horário é um campo
+                            <strong>obrigatório</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row place-input">
+                    <mat-form-field>
+                        <mat-label>Local</mat-label>
+                        <input
+                            matInput
+                            formControlName="place"
+                        >
+                        <mat-error>
+                            Local é um campo
+                            <strong>obrigatório</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row description-input">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Descrição</mat-label>
+                        <textarea
+                            matInput
+                            formControlName="description"
+                            placeholder="Ex. It makes me feel..."
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button
+        mat-flat-button
+        mat-dialog-close
+    >
+        Cancelar
+    </button>
+    <button
+        type="submit"
+        mat-flat-button
+        [mat-dialog-close]="true"
+        cdkFocusInitial
+        color="primary"
+        [disabled]="!formulario.valid"
+        (click)="addNewActivity()"
+    >
+        Adicionar
+    </button>
+</mat-dialog-actions>

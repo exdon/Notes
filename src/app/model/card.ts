@@ -3,9 +3,9 @@ export class Card {
     title?: string;
     bodyComments?: string;
     inputActivity?: string;
-    activitiesToDo?: Array<ActivityToDo>;
+    // activitiesToDo?: Array<ActivityToDo>;
 }
 
-export class ActivityToDo {
-    activityName?: string;
-}
+// export class ActivityToDo {
+//     activityName?: string;
+// }

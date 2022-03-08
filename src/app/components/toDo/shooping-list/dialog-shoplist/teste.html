@@ -1,0 +1,179 @@
+<div class="container">
+    <form
+        [formGroup]="formulario"
+        (ngSubmit)="addNewShopList()"
+    >
+        <div class="container forms-inputs pb-5">
+            <div class="row listName">
+                <mat-form-field
+                    class="example-full-width"
+                    appearance="fill"
+                >
+                    <mat-label>Nome da Lista</mat-label>
+                    <input
+                        matInput
+                        placeholder="Ex. Carrefour"
+                        [value]="listName"
+                        formControlName="listName"
+                    >
+                </mat-form-field>
+            </div>
+            <ng-container *ngFor="let category of categories.controls; let i = index">
+                <div class="row category">
+                    <div class="col-md-10">
+                        <mat-form-field
+                            appearance="fill"
+                            [formGroupName]="i"
+                        >
+                            <mat-label>Categoria</mat-label>
+                            <mat-select>
+                                <mat-option
+                                    *ngFor="let category of categoriesSelect"
+                                    [value]="category.value"
+                                    formControlName="categoryName"
+                                >
+                                    {{category.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <button
+                            type="submit"
+                            mat-mini-fab
+                            style="background-color: green; color: white;"
+                            aria-label="Example icon button with a menu icon"
+                        >
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <ng-container *ngFor="let product of products.controls;let i = index;">
+                    <div
+                        class="product"
+                        [formGroupName]="i"
+                    >
+                        <div class="row product-name">
+                            <div class="col-md-10">
+                                <mat-form-field
+                                    class="example-full-width"
+                                    appearance="fill"
+                                    style="width: 100%;"
+                                >
+                                    <mat-label>State</mat-label>
+                                    <input
+                                        matInput
+                                        aria-label="State"
+                                        [matAutocomplete]="auto"
+                                        formControlName="productName"
+                                        [formControl]="stateCtrl"
+                                    >
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option
+                                            *ngFor="let state of filteredStates | async"
+                                            [value]="state.name"
+                                        >
+                                            <img
+                                                class="example-option-img"
+                                                aria-hidden
+                                                [src]="state.flag"
+                                                height="25"
+                                            >
+                                            <span>{{state.name}}</span>
+                                            |
+                                            <small>Population: {{state.population}}</small>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <button
+                                    type="submit"
+                                    mat-mini-fab
+                                    style="background-color: green; color: white;"
+                                    aria-label="Example icon button with a menu icon"
+                                >
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row product-detail">
+                            <div class="col-md-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Quantidade</mat-label>
+                                    <input
+                                        matInput
+                                        type="number"
+                                        placeholder="Ex. 12"
+                                        min="1"
+                                        formControlName="productQuantity"
+                                    >
+                                    <!-- <mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Unidade</mat-label>
+                                    <mat-select formControlName="productUnit">
+                                        <mat-option
+                                            *ngFor="let unit of unit"
+                                            [value]="unit.value"
+                                        >
+                                            {{unit.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field
+                                    appearance="fill"
+                                    floatLabel="always"
+                                >
+                                    <mat-label>Preço</mat-label>
+                                    <input
+                                        matInput
+                                        type="number"
+                                        class="example-right-align"
+                                        placeholder="0"
+                                        formControlName="producPrice"
+                                    >
+                                    <span matPrefix>R$&nbsp;</span>
+                                    <!-- <span matSuffix>.00</span> -->
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row product-note">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Observação</mat-label>
+                                <textarea
+                                    matInput
+                                    formControlName="producNote"
+                                ></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="row product-pic"></div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </form>
+    <div
+        mat-dialog-actions
+        style="float: right;"
+    >
+        <button
+            mat-button
+            (click)="cancel()"
+        >
+            Cancelar
+        </button>
+        <button
+            mat-button
+            [mat-dialog-close]="true"
+            cdkFocusInitial
+            (click)="addNewShopList()"
+        >
+            Cadastrar
+        </button>
+    </div>
+</div>

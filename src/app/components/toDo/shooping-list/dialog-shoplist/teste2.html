@@ -1,0 +1,172 @@
+<div class="container">
+    <form>
+        <div
+            class="container forms-inputs pb-5"
+            *ngFor="let list of shoopingList;let i = index"
+        >
+            <div class="row listName">
+                <mat-form-field
+                    class="example-full-width"
+                    appearance="fill"
+                >
+                    <mat-label>Nome da Lista</mat-label>
+                    <input
+                        matInput
+                        placeholder="Ex. Carrefour"
+                        [value]="listName"
+                        [(ngModel)]="list.listName"
+                    >
+                </mat-form-field>
+            </div>
+            <div *ngFor="let category of list.categories; let i = index">
+                <div class="row category">
+                    <div class="col-md-10">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Categoria</mat-label>
+                            <mat-select [(ngModel)]="category.categoryName">
+                                <mat-option
+                                    *ngFor="let category of categoriesSelect"
+                                    [value]="category.value"
+                                >
+                                    {{category.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <button
+                            type="submit"
+                            mat-mini-fab
+                            style="background-color: green; color: white;"
+                            aria-label="Example icon button with a menu icon"
+                        >
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div *ngFor="let product of category.products;let i = index;">
+                    <div class="product">
+                        <div class="row product-name">
+                            <div class="col-md-10">
+                                <mat-form-field
+                                    class="example-full-width"
+                                    appearance="fill"
+                                    style="width: 100%;"
+                                >
+                                    <mat-label>Produto</mat-label>
+                                    <input
+                                        [(ngModel)]="product.productName"
+                                        matInput
+                                        aria-label="State"
+                                        [matAutocomplete]="auto"
+                                        [formControl]="stateCtrl"
+                                    >
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option
+                                            *ngFor="let state of filteredStates | async"
+                                            [value]="state.name"
+                                        >
+                                            <img
+                                                class="example-option-img"
+                                                aria-hidden
+                                                [src]="state.flag"
+                                                height="25"
+                                            >
+                                            <span>{{state.name}}</span>
+                                            |
+                                            <small>Population: {{state.population}}</small>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <button
+                                    type="submit"
+                                    mat-mini-fab
+                                    style="background-color: green; color: white;"
+                                    aria-label="Example icon button with a menu icon"
+                                >
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row product-detail">
+                            <div class="col-md-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Quantidade</mat-label>
+                                    <input
+                                        [(ngModel)]="product.productQuantity"
+                                        matInput
+                                        type="number"
+                                        placeholder="Ex. 12"
+                                        min="1"
+                                    >
+                                    <!-- <mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Unidade</mat-label>
+                                    <mat-select [(ngModel)]="product.productUnit">
+                                        <mat-option
+                                            *ngFor="let unit of unit"
+                                            [value]="unit.value"
+                                        >
+                                            {{unit.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field
+                                    appearance="fill"
+                                    floatLabel="always"
+                                >
+                                    <mat-label>Preço</mat-label>
+                                    <input
+                                        [(ngModel)]="product.productPrice"
+                                        matInput
+                                        type="number"
+                                        class="example-right-align"
+                                        placeholder="0"
+                                    >
+                                    <span matPrefix>R$&nbsp;</span>
+                                    <!-- <span matSuffix>.00</span> -->
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row product-note">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Observação</mat-label>
+                                <textarea
+                                    [(ngModel)]="product.productNote"
+                                    matInput
+                                ></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="row product-pic"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div
+        mat-dialog-actions
+        style="float: right;"
+    >
+        <button
+            mat-button
+            (click)="cancel()"
+        >
+            Cancelar
+        </button>
+        <button
+            mat-button
+            [mat-dialog-close]="true"
+            cdkFocusInitial
+            (click)="addNewShopList()"
+        >
+            Cadastrar
+        </button>
+    </div>
+</div>

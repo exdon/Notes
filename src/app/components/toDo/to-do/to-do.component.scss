@@ -1,0 +1,49 @@
+
+section {
+    display: table;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    width: 50px;
+    padding: 10px 0px;
+  }
+
+  
+  .label-btn-priority {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .forms-inputs p {
+    font-size: 11px;
+    color: gray;
+  }
+
+  .mat-column-activityName {
+    min-width: 100%;
+  }
+
+
+  .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .efeito {
+    animation-name: example;
+    animation-duration: 10s;
+}
+
+@keyframes example {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
