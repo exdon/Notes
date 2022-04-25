@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="container shadow">
         <div class="pt-5 border-light rounded">
-            <h6>Fina</h6>
+            <h6>Controle Financeiro</h6>
             <hr>
             <div class="row">
                 <button
@@ -10,17 +10,17 @@
                     color="primary"
                     aria-label="Example icon button with a delete icon"
                 >
-                    <mat-icon>delete</mat-icon>
+                    <mat-icon>add</mat-icon>
                 </button>
             </div>
-            <div class="body">
+            <div class="body" style="margin-top: 80px;">
                 <mat-accordion
                     class="example-headers-align"
                     multi
                 >
                     <mat-expansion-panel>
                         <mat-expansion-panel-header>
-                            <mat-panel-title>Personal data</mat-panel-title>
+                            <mat-panel-title>Gastos</mat-panel-title>
                             <mat-panel-description>
                                 Total gasto: {{getTotalCost() | currency:'BRL'}}
                                 <span
@@ -67,7 +67,7 @@
                                     mat-cell
                                     *matCellDef="let element"
                                 >
-                                    {{element.date}}
+                                    {{element.date | date: 'dd/MM/yyyy'}}
                                 </td>
                             </ng-container>
 
